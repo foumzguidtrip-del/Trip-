@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://foumzguidtrip-del.github.io/Trip-/sitemap.xml
