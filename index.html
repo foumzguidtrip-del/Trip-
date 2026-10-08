@@ -1,23 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" class="is-loading">
-<head>
+<head><script data-tmly-media-guard="1">(function(){"use strict";
+var T=window.__tmly||(window.__tmly=(function(){
+var o={},n=String(window.name||"");
+if(n.slice(0,5)==="tmly:"){n.slice(5).split("&").forEach(function(kv){
+var i=kv.indexOf("=");if(i>0){o[kv.slice(0,i)]=kv.slice(i+1)}})}
+return o})());
+if(T.presentation!=="preview"){return}
+var K="tmly:media-muted:"+String(location.pathname).replace(/[^/]*$/,"");
+var muted=false;try{muted=localStorage.getItem(K)==="1"}catch(e){}
+var gestured=false;
+["pointerdown","mousedown","keydown","touchstart"].forEach(function(t){
+document.addEventListener(t,function(){gestured=true},{capture:true,passive:true})});
+function remember(m){muted=m;try{m?localStorage.setItem(K,"1"):localStorage.removeItem(K)}catch(e){}}
+function announcePaused(el){try{el.dispatchEvent(new Event("pause"))}catch(e){}}
+function harden(el){
+el.autoplay=false;el.removeAttribute("autoplay");
+if(el.getAttribute("preload")==="auto"){el.setAttribute("preload","none")}
+if(muted){el.muted=true}
+if(!gestured&&!el.paused){try{el.pause()}catch(e){}}}
+var play=HTMLMediaElement.prototype.play;
+HTMLMediaElement.prototype.play=function(){
+if(!gestured){announcePaused(this);
+return Promise.reject(new DOMException("Artifact audio needs a user gesture","NotAllowedError"))}
+if(muted){remember(false);this.muted=false}
+return play.apply(this,arguments)};
+var acProtos=[];
+function guardAC(n){
+var N=window[n];if(!N||!N.prototype){return}
+if(acProtos.indexOf(N.prototype)<0){acProtos.push(N.prototype);
+var res=N.prototype.resume;
+if(typeof res==="function"){N.prototype.resume=function(){
+if(!gestured){return Promise.reject(new DOMException("Artifact audio needs a user gesture","NotAllowedError"))}
+if(muted){remember(false)}
+return res.apply(this,arguments)}}}
+var W=function(o){var c=arguments.length?new N(o):new N();
+if(!gestured){try{c.suspend()}catch(e){}}return c};
+W.prototype=N.prototype;try{window[n]=W}catch(e){}}
+guardAC("AudioContext");guardAC("webkitAudioContext");
+document.addEventListener("play",function(e){
+var el=e.target;if(el instanceof HTMLMediaElement&&!gestured){try{el.pause()}catch(err){}}},true);
+document.addEventListener("pause",function(e){
+if(e.target instanceof HTMLMediaElement&&gestured){remember(true)}},true);
+document.addEventListener("volumechange",function(e){
+var el=e.target;if(el instanceof HTMLMediaElement&&gestured){remember(el.muted||el.volume===0)}},true);
+function sweep(n){if(n&&n.querySelectorAll){var l=n.querySelectorAll("audio,video");
+for(var i=0;i<l.length;i++){harden(l[i])}}}
+new MutationObserver(function(rs){for(var i=0;i<rs.length;i++){var a=rs[i].addedNodes;
+for(var j=0;j<a.length;j++){var n=a[j];
+if(n instanceof HTMLMediaElement){harden(n)}else{sweep(n)}}}})
+.observe(document.documentElement,{childList:true,subtree:true});
+document.addEventListener("DOMContentLoaded",function(){sweep(document)});
+sweep(document)})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Foum Zguid Trip — Luxury Sahara Expeditions | Foum Zguid, Tata, Morocco</title>
-<meta name="description" content="Foum Zguid Trip — luxury nomadic expeditions from Marrakech to Merzouga. Lake Iriki, Erg Lmahazil, Erg Chegaga. Luxury bivouacs, camel treks & starlight dinners. WhatsApp +212 767-524630">
+<title>Foum Zguid Trip — Luxury Sahara Desert Tours, Morocco</title>
+<link rel="stylesheet" href="fonts.css">
+<meta name="description" content="Luxury Sahara tours from Foum Zguid, Morocco — camel treks, 4x4 dune crossings and starlight bivouacs from Marrakech to Merzouga. Book on WhatsApp.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="googlebot" content="index, follow">
-<link rel="canonical" href="https://foumzguidtrip-del.github.io/Trip-/">
+<link rel="canonical" href="https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI">
 
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="shortcut icon" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="shortcut icon" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://foumzguidtrip-del.github.io/Trip-/">
+<meta property="og:url" content="https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI">
 <meta property="og:site_name" content="Foum Zguid Trip">
 <meta property="og:title" content="Foum Zguid Trip — Luxury Sahara Expeditions">
 <meta property="og:description" content="Private nomadic expeditions from Marrakech to Merzouga. Luxury bivouacs, camel treks, starlight dinners. Foum Zguid, Tata Province, Morocco.">
-<meta property="og:image" content="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1170403da-8020-4b31-b2d8-d32388020c24.png">
+<meta property="og:image" content="https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/images/hero-dunes.jpg?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:locale:alternate" content="es_ES">
@@ -25,41 +77,42 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Foum Zguid Trip — Luxury Sahara Expeditions">
 <meta name="twitter:description" content="Private nomadic expeditions from Marrakech to Merzouga. Luxury bivouacs, camel treks & starlight dinners.">
-<meta name="twitter:image" content="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1170403da-8020-4b31-b2d8-d32388020c24.png">
+<meta name="twitter:image" content="https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/images/hero-dunes.jpg?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI">
 <meta name="theme-color" content="#0B0B0B">
+<meta name="color-scheme" content="dark">
 <!-- GSC DEPLOY CHECKLIST:
-     1) verify ownership in Search Console, submit https://foumzguidtrip-del.github.io/Trip-/sitemap.xml
-     2) robots.txt:  User-agent: *  /  Allow: /  /  Sitemap: https://foumzguidtrip-del.github.io/Trip-/sitemap.xml
-     3) sitemap.xml with the 4 hreflang URLs listed in <head>
-     4) ensure HTTPS + redirects www→apex, and that logo.png ships next to index.html -->
+     1) verify ownership in Search Console, submit <your-domain>/sitemap.xml
+     2) robots.txt:  User-agent: *  /  Allow: /  /  Sitemap: <your-domain>/sitemap.xml
+     3) replace the canonical/og/twitter/JSON-LD URLs (currently the live preview URL) with your real domain in this file, robots.txt and sitemap.xml
+     4) ensure HTTPS is active and www redirects to your chosen canonical host
+     5) confirm images/logo.png ships next to index.html (it is also the favicon) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "LocalBusiness",
-      "@id": "https://foumzguidtrip-del.github.io/Trip-/#business",
+      "@id": "https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI#business",
       "name": "Foum Zguid Trip",
       "description": "Licensed local tour operator offering luxury Sahara expeditions, camel rides, 4x4 dune crossings and starlight bivouacs from Foum Zguid to Merzouga.",
-      "url": "https://foumzguidtrip-del.github.io/Trip-/",
+      "url": "https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI",
       "telephone": "+212767524630",
       "email": "foumzguidtrip@gmail.com",
       "priceRange": "€39 - €299",
       "address": { "@type": "PostalAddress", "streetAddress": "Foum Zguid", "addressLocality": "Foum Zguid", "addressRegion": "Tata Province", "addressCountry": "MA" },
-      "geo": { "@type": "GeoCoordinates", "latitude": 29.9536, "longitude": -7.0569 },
+      "geo": { "@type": "GeoCoordinates", "latitude": 30.0853, "longitude": -6.8736 },
       "hasMap": "https://www.google.com/maps/search/?api=1&query=Foum+Zguid%2C+Tata+Province%2C+Morocco",
       "sameAs": ["https://www.instagram.com/_foum_zguid_trip", "https://wa.me/212767524630"],
       "openingHours": "Mo-Su 08:00-22:00",
-      "image": "https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1a8e92398-afdb-4018-a77d-91a9b0b3d003.png",
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "187", "bestRating": "5" }
+      "image": "https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/images/logo.png?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI"
     },
     {
       "@type": "WebSite",
-      "@id": "https://foumzguidtrip-del.github.io/Trip-/#website",
-      "url": "https://foumzguidtrip-del.github.io/Trip-/",
+      "@id": "https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI#website",
+      "url": "https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI",
       "name": "Foum Zguid Trip",
       "inLanguage": ["en", "fr", "es", "de"],
-      "publisher": { "@id": "https://foumzguidtrip-del.github.io/Trip-/#business" }
+      "publisher": { "@id": "https://static.teamily.ai/sites/2679fa53-08a5-43de-9616-f3ee4402a711/webpages/foum-zguid-trip_v4/?tk=c2l0ZToyNjc5ZmE1My0wOGE1LTQzZGUtOTYxNi1mM2VlNDQwMmE3MTEvd2VicGFnZXMvZm91bS16Z3VpZC10cmlwX3Y0OjE3OTE0MjM4NDM.ZWU0ZGYzY2M4MzhmMTdkMTQ5OGQ1ZmM0YjQ4YTFhZmI#business" }
     },
     {
       "@type": "TouristAttraction",
@@ -82,38 +135,21 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/marcellus@latest/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/cormorant-garamond@latest/latin-500-italic.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/cormorant-garamond@latest/latin-600-italic.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/latin-400-normal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/latin-500-normal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/latin-600-normal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/latin-700-normal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/manrope@latest/latin-800-normal.css">
-<link rel="preconnect" href="https://image.qwenlm.ai" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preload" as="image" href="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1170403da-8020-4b31-b2d8-d32388020c24.png" fetchpriority="high">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: { extend: {
-    colors: { midnight:'#0B0B0B', coal:'#141210', onyx:'#1B1815', gold:{pale:'#E9CF7E',DEFAULT:'#D4AF37',deep:'#AA7C11'}, star:'#F7F4EC' },
-    fontFamily: {
-      display:['Marcellus','ui-serif','Georgia','serif'],
-      body:['Manrope','ui-sans-serif','system-ui','sans-serif'],
-      accent:['Cormorant Garamond','Georgia','serif']
-    },
-    boxShadow: {
-      gold:'0 12px 45px -12px rgba(212,175,55,.5), 0 4px 18px -6px rgba(212,175,55,.35)',
-      card:'0 30px 90px -30px rgba(0,0,0,.9), 0 15px 45px -20px rgba(0,0,0,.65)',
-      lux:'0 24px 70px -28px rgba(0,0,0,.85), 0 8px 30px -12px rgba(0,0,0,.5)'
-    },
-    transitionTimingFunction: { lux:'cubic-bezier(.22,1,.36,1)' }
-  } }
-}
-</script>
+
+
+<link rel="preload" as="image" href="images/hero-dunes.jpg" fetchpriority="high">
+<link rel="stylesheet" href="css/tailwind.generated.css">
 <style>
   :root{--ease:cubic-bezier(.22,1,.36,1)}
+  /* ══ HI-RES RENDERING (crisp on retina / 4K) ══ */
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-synthesis-weight:none}
+  img,video{image-rendering:auto;image-rendering:-webkit-optimize-contrast}
+  h1,h2,h3,h4,.font-display,.font-accent{text-rendering:geometricPrecision}
+  @media (min-resolution:1.5dppx){
+    .grain{opacity:.028}
+  }
+
   html{scroll-behavior:smooth;scroll-padding-top:7rem}
   html.is-loading{overflow:hidden}
   body{background:#0B0B0B;overflow-x:hidden;overflow-x:clip}
@@ -157,7 +193,7 @@ tailwind.config = {
   .btn-ghost{border:1px solid rgba(212,175,55,.45);color:#E9CF7E;transition:all .45s var(--ease)}
   .btn-ghost:hover{background:rgba(212,175,55,.1);border-color:rgba(233,207,126,.8);box-shadow:0 0 30px rgba(212,175,55,.2)}
 
-  .chapter{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:rgba(233,207,126,.75);font-size:1.1rem;letter-spacing:.08em;margin-bottom:.9rem}
+  .chapter{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:600;color:rgba(233,207,126,.75);font-size:1.1rem;letter-spacing:.08em;margin-bottom:.9rem}
 
   .wmask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
   .word{display:inline-block;transform:translateY(118%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--w)*.09s + .1s)}
@@ -204,7 +240,7 @@ tailwind.config = {
   .scroll-hint .txt{letter-spacing:.45em;font-size:10px;color:rgba(233,207,126,.7);text-transform:uppercase;font-weight:700}
 
   .journey-rail{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:40;display:none}
-  @media(min-width:1180px){.journey-rail{display:block}}
+  @media(min-width:1360px){.journey-rail{display:block}}
   .jr-line{position:relative;width:2px;height:56vh;background:rgba(212,175,55,.14);border-radius:2px;margin:0 auto}
   #jrFill{position:absolute;top:0;left:0;width:100%;height:0%;background:linear-gradient(#E9CF7E,#AA7C11);box-shadow:0 0 10px rgba(212,175,55,.6);border-radius:2px}
   #jrCamel{position:absolute;left:50%;transform:translate(-50%,-55%);top:0%;transition:top .25s linear;filter:drop-shadow(0 0 7px rgba(233,207,126,.85))}
@@ -221,7 +257,7 @@ tailwind.config = {
   .eyebrow{font-size:11px;letter-spacing:.45em;text-transform:uppercase;color:#D4AF37;font-weight:800;display:inline-flex;align-items:center;gap:1rem}
   .eyebrow::before,.eyebrow::after{content:"";width:2.5rem;height:1px;background:linear-gradient(90deg,transparent,#D4AF37);display:inline-block}
   .eyebrow::after{background:linear-gradient(90deg,#D4AF37,transparent)}
-  .lede{max-w-2xl;margin-left:auto;margin-right:auto;margin-top:1.5rem;color:rgba(247,244,236,.8);line-height:1.8}
+  .lede{max-width:42rem;margin-left:auto;margin-right:auto;margin-top:1.5rem;color:rgba(247,244,236,.8);line-height:1.8}
   .marquee{overflow:hidden;border-block:1px solid rgba(212,175,55,.15);background:rgba(20,18,16,.65)}
   .marquee-track{display:flex;width:max-content;animation:marq 46s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
@@ -326,7 +362,9 @@ tailwind.config = {
   .lowfx .text-gold-grad,.lowfx .h-shine{animation:none}
   .lowfx .reveal,.lowfx .word{filter:none;transition:opacity .3s ease;opacity:1;transform:none}
   .lowfx [data-parallax],.lowfx #heroMouse{transform:none!important}
-  .lowfx #dust,#curDot,.lowfx #curRing,#curRing{display:none}
+  .lowfx #dust{display:none}
+  #curDot,#curRing{display:none}
+  body.fx-cursor #curDot,body.fx-cursor #curRing{display:block}
   .lowfx .caravan{animation:none;left:6%}
   .lowfx .gate{transition:none}
   .lowfx .grain{display:none}
@@ -372,7 +410,7 @@ tailwind.config = {
     .shadow-gold{box-shadow:0 8px 20px -8px rgba(212,175,55,.35)!important}
   }
 </style>
-<noscript><style>#loader{display:none}.reveal,.word{opacity:1;transform:none;filter:none}</style></noscript>
+<noscript><style>#loader{display:none}html.is-loading{overflow:auto}.reveal,.word{opacity:1;transform:none;filter:none}</style></noscript>
 </head>
 <body class="bg-midnight text-star font-body antialiased">
 
@@ -385,7 +423,7 @@ tailwind.config = {
     <div class="relative">
       <span class="loader-ring r1" aria-hidden="true"></span>
       <span class="loader-ring r2" aria-hidden="true"></span>
-      <img src="logo.png" onerror="this.onerror=null;this.src='https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1a8e92398-afdb-4018-a77d-91a9b0b3d003.png';" alt="Foum Zguid Trip — Official Logo" width="160" height="90" class="loader-logo relative h-24 w-auto rounded-2xl ring-1 ring-gold/60 bg-star object-cover">
+      <img src="images/logo.png" alt="Foum Zguid Trip — Official Logo" width="160" height="90" class="loader-logo relative h-24 w-auto rounded-2xl ring-1 ring-gold/60 bg-star object-cover">
     </div>
     <p class="font-display text-star tracking-[.3em] text-sm mt-8">FOUM ZGUID <span class="text-gold">TRIP</span></p>
     <p class="chapter mt-2" style="margin-bottom:0" data-i18n="loader_sub">— the caravan awaits —</p>
@@ -420,7 +458,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20 gap-3">
       <a href="#home" class="flex items-center gap-3 shrink-0" aria-label="Foum Zguid Trip — Home">
-        <img src="logo.png" onerror="this.onerror=null;this.src='https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1a8e92398-afdb-4018-a77d-91a9b0b3d003.png';" alt="Foum Zguid Trip — Official Logo" decoding="async" width="160" height="90" class="h-12 w-auto rounded-xl ring-1 ring-gold/50 shadow-gold bg-star object-cover">
+        <img src="images/logo.png" alt="Foum Zguid Trip — Official Logo" decoding="async" width="160" height="90" class="h-12 w-auto rounded-xl ring-1 ring-gold/50 shadow-gold bg-star object-cover">
         <span class="hidden sm:flex flex-col leading-none">
           <span class="font-display text-lg tracking-[.18em] text-star">FOUM ZGUID</span>
           <span class="text-[10px] font-extrabold tracking-[.55em] text-gold mt-1">T R I P</span>
@@ -484,7 +522,7 @@ tailwind.config = {
 <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
   <div data-parallax="0.16" class="absolute inset-x-0 -top-[10%] h-[120%] overflow-hidden will-change-transform" aria-hidden="true">
     <div id="heroMouse" class="w-full h-full">
-      <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1170403da-8020-4b31-b2d8-d32388020c24.png" alt="Golden Sahara dunes at dusk with a camel caravan near Foum Zguid" fetchpriority="high" decoding="async" width="1600" height="900" class="kenburns w-full h-full object-cover">
+      <img src="images/hero-dunes.jpg" alt="Golden Sahara dunes at dusk with a camel caravan near Foum Zguid" fetchpriority="high" decoding="async" width="1600" height="900" class="kenburns w-full h-full object-cover">
     </div>
   </div>
   <div class="absolute inset-0 atmo" aria-hidden="true"></div>
@@ -527,7 +565,7 @@ tailwind.config = {
     </div>
     <dl class="reveal d5 grid grid-cols-2 lg:grid-cols-4 gap-5 max-w-4xl mx-auto mt-20">
       <div class="lift rounded-2xl border border-gold/20 bg-midnight/55 backdrop-blur-md px-4 py-6"><dt class="text-[11px] tracking-[.28em] uppercase text-star/75 font-bold" data-i18n="st1">Legendary Stops</dt><dd class="font-display text-3xl text-gold-grad mt-2"><span class="cnt" data-to="10">10</span>+</dd></div>
-      <div class="lift rounded-2xl border border-gold/20 bg-midnight/55 backdrop-blur-md px-4 py-6"><dt class="text-[11px] tracking-[.28em] uppercase text-star/75 font-bold" data-i18n="st2">Guest Rating</dt><dd class="font-display text-3xl text-gold-grad mt-2"><span class="cnt" data-to="4.9" data-dec="1">4.9</span>★</dd></div>
+      <div class="lift rounded-2xl border border-gold/20 bg-midnight/55 backdrop-blur-md px-4 py-6"><dt class="text-[11px] tracking-[.28em] uppercase text-star/75 font-bold" data-i18n="st2">WhatsApp Support</dt><dd class="font-display text-3xl text-gold-grad mt-2"><span class="cnt" data-to="24">24</span>/7</dd></div>
       <div class="lift rounded-2xl border border-gold/20 bg-midnight/55 backdrop-blur-md px-4 py-6"><dt class="text-[11px] tracking-[.28em] uppercase text-star/75 font-bold" data-i18n="st3">Free Cancellation</dt><dd class="font-display text-3xl text-gold-grad mt-2"><span class="cnt" data-to="48">48</span>h</dd></div>
       <div class="lift rounded-2xl border border-gold/20 bg-midnight/55 backdrop-blur-md px-4 py-6"><dt class="text-[11px] tracking-[.28em] uppercase text-star/75 font-bold" data-i18n="st4">Licensed &amp; Insured</dt><dd class="font-display text-3xl text-gold-grad mt-2"><span class="cnt" data-to="100">100</span>%</dd></div>
     </dl>
@@ -618,7 +656,7 @@ tailwind.config = {
 
       <article class="reveal group relative flex flex-col rounded-[1.75rem] overflow-hidden border border-gold/20 bg-onyx shadow-lux lift">
         <div class="card-img img-zoom relative h-56 overflow-hidden">
-          <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/114cdbb66-eb33-4450-83f3-84e1cb6d5c4c.png" alt="Sunset camel ride on golden dunes" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
+          <img src="images/camel-ride.jpg" alt="Sunset camel ride on golden dunes" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-onyx via-transparent"></div>
           <span class="absolute top-4 left-4 rounded-full bg-midnight/80 backdrop-blur border border-gold/50 text-gold text-[10px] font-extrabold tracking-[.2em] uppercase px-3 py-1" data-i18n="c1_badge">Golden Hour</span>
           <span class="absolute bottom-4 right-4 rounded-full btn-gold text-midnight text-sm font-extrabold px-4 py-1.5" data-i18n="c1_price">From €39</span>
@@ -628,6 +666,7 @@ tailwind.config = {
           <p class="text-star/80 text-sm leading-relaxed mt-3" data-i18n="c1_desc">As the heat softens, our caravan steps onto the ridge in single file. The desert turns gold, rose, then ember — one suspended hour, travelled the way caravans have for a thousand years.</p>
           <p class="text-[11px] tracking-[.18em] uppercase text-gold font-bold mt-4" data-i18n="c1_meta">≈ 2 hours · daily at dusk · departs Foum Zguid oasis</p>
           <div class="mt-6 space-y-2 text-sm text-star/85">
+            <!-- REVIEW-MARKER (item 22): the four tour packages currently share an identical "What's Included" list. Verify each list matches that package's real itinerary before publishing. -->
             <p class="text-gold font-extrabold text-xs tracking-[.2em] uppercase" data-i18n="inc_h">What's Included</p>
             <ul class="space-y-1.5"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_4x4">Private air-conditioned Toyota Land Cruiser 4x4</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_guide">Multilingual driver-guide</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_meals">All gourmet meals (tagines, sand-baked bread)</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_water">Unlimited mineral water</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_camel_ridge">Camel trekking on the golden ridge</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_stargaze_tea">Stargazing session &amp; nomadic tea</span></li></ul>
             <p class="text-star/70 font-extrabold text-xs tracking-[.2em] uppercase pt-2" data-i18n="exc_h">What's Excluded</p>
@@ -639,7 +678,7 @@ tailwind.config = {
 
       <article class="reveal group relative flex flex-col rounded-[1.75rem] overflow-hidden border border-gold/20 bg-onyx shadow-lux lift">
         <div class="card-img img-zoom relative h-56 overflow-hidden">
-          <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1c5f1b5ee-116f-4e34-9514-70bb0934890f.png" alt="Toyota Land Cruiser 4x4 crossing dunes and fossil lake" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
+          <img src="images/4x4-crossing.jpg" alt="Toyota Land Cruiser 4x4 crossing dunes and fossil lake" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-onyx via-transparent"></div>
           <span class="absolute top-4 left-4 rounded-full bg-midnight/80 backdrop-blur border border-gold/50 text-gold text-[10px] font-extrabold tracking-[.2em] uppercase px-3 py-1" data-i18n="c2_badge">Adrenaline</span>
           <span class="absolute bottom-4 right-4 rounded-full btn-gold text-midnight text-sm font-extrabold px-4 py-1.5" data-i18n="c2_price">From €95</span>
@@ -649,6 +688,7 @@ tailwind.config = {
           <p class="text-star/80 text-sm leading-relaxed mt-3" data-i18n="c2_desc">A full-day dune rollercoaster into the wild erg: fossil-lake crossings, nomad tea stops and crest after crest of living gold.</p>
           <p class="text-[11px] tracking-[.18em] uppercase text-gold font-bold mt-4" data-i18n="c2_meta">Full day · departs Foum Zguid base camp</p>
           <div class="mt-6 space-y-2 text-sm text-star/85">
+            <!-- REVIEW-MARKER (item 22): the four tour packages currently share an identical "What's Included" list. Verify each list matches that package's real itinerary before publishing. -->
             <p class="text-gold font-extrabold text-xs tracking-[.2em] uppercase" data-i18n="inc_h">What's Included</p>
             <ul class="space-y-1.5"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_4x4">Private air-conditioned Toyota Land Cruiser 4x4</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_guide">Multilingual driver-guide</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_meals">All gourmet meals (tagines, sand-baked bread)</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_water">Unlimited mineral water</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_camel_camp">Camel trekking &amp; nomad camp visit</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_stargaze_dusk">Stargazing session at dusk</span></li></ul>
             <p class="text-star/70 font-extrabold text-xs tracking-[.2em] uppercase pt-2" data-i18n="exc_h">What's Excluded</p>
@@ -661,7 +701,7 @@ tailwind.config = {
       <article class="reveal group halo relative flex flex-col rounded-[1.75rem] border border-gold/60 bg-onyx shadow-gold lift">
         <span class="absolute top-4 right-4 z-20 rounded-full bg-gold text-midnight text-[10px] font-extrabold tracking-[.2em] uppercase px-3 py-1" data-i18n="c3_loved">Most Loved</span>
         <div class="card-img img-zoom relative h-56 overflow-hidden rounded-t-[1.75rem]">
-          <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1218e6898-a26f-403b-8662-666ce4d279c6.png" alt="Luxury bivouac tents under the Milky Way" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
+          <img src="images/bivouac-night.jpg" alt="Luxury bivouac tents under the Milky Way" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-onyx via-transparent"></div>
           <span class="absolute top-4 left-4 rounded-full bg-midnight/80 backdrop-blur border border-gold/50 text-gold text-[10px] font-extrabold tracking-[.2em] uppercase px-3 py-1" data-i18n="c3_badge">2 Days / 1 Night</span>
           <span class="absolute bottom-4 right-4 rounded-full btn-gold text-midnight text-sm font-extrabold px-4 py-1.5" data-i18n="c3_price">From €139</span>
@@ -671,6 +711,7 @@ tailwind.config = {
           <p class="text-star/80 text-sm leading-relaxed mt-3" data-i18n="c3_desc">One perfect night in a luxury tent beneath the Milky Way: drum circles, a fire-kissed tagine dinner, and sunrise camel silhouettes you will never forget.</p>
           <p class="text-[11px] tracking-[.18em] uppercase text-gold font-bold mt-4" data-i18n="c3_meta">2 Days / 1 Night · departs Foum Zguid base camp</p>
           <div class="mt-6 space-y-2 text-sm text-star/85">
+            <!-- REVIEW-MARKER (item 22): the four tour packages currently share an identical "What's Included" list. Verify each list matches that package's real itinerary before publishing. -->
             <p class="text-gold font-extrabold text-xs tracking-[.2em] uppercase" data-i18n="inc_h">What's Included</p>
             <ul class="space-y-1.5"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_4x4">Private air-conditioned Toyota Land Cruiser 4x4</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_guide">Multilingual driver-guide</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_meals">All gourmet meals (tagines, sand-baked bread)</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_water">Unlimited mineral water</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_camel_sunset">Camel trekking at sunset &amp; sunrise</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_storyteller">Stargazing with a Berber storyteller</span></li></ul>
             <p class="text-star/70 font-extrabold text-xs tracking-[.2em] uppercase pt-2" data-i18n="exc_h">What's Excluded</p>
@@ -682,7 +723,7 @@ tailwind.config = {
 
       <article class="reveal group relative flex flex-col rounded-[1.75rem] overflow-hidden border border-gold/20 bg-onyx shadow-lux lift">
         <div class="card-img img-zoom relative h-56 overflow-hidden">
-          <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/100936211-b166-4a8c-bef3-18c27bba7297.png" alt="Multi-day Sahara crossing at dawn" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
+          <img src="images/multiday-dawn.jpg" alt="Multi-day Sahara crossing at dawn" loading="lazy" decoding="async" width="800" height="450" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-onyx via-transparent"></div>
           <span class="absolute top-4 left-4 rounded-full bg-midnight/80 backdrop-blur border border-gold/50 text-gold text-[10px] font-extrabold tracking-[.2em] uppercase px-3 py-1" data-i18n="c4_badge">Multi-Day</span>
           <span class="absolute bottom-4 right-4 rounded-full btn-gold text-midnight text-sm font-extrabold px-4 py-1.5" data-i18n="c4_price">From €299</span>
@@ -692,6 +733,7 @@ tailwind.config = {
           <p class="text-star/80 text-sm leading-relaxed mt-3" data-i18n="c4_desc">The complete crossing: Lake Iriki's fossil mirror, Erg Lmahazil's silence, Erg Chegaga's golden mountains and dawn at Merzouga. The circuit of a lifetime, in one seamless arc.</p>
           <p class="text-[11px] tracking-[.18em] uppercase text-gold font-bold mt-4" data-i18n="c4_meta">6 Days / 5 Nights · departs Marrakech or Foum Zguid</p>
           <div class="mt-6 space-y-2 text-sm text-star/85">
+            <!-- REVIEW-MARKER (item 22): the four tour packages currently share an identical "What's Included" list. Verify each list matches that package's real itinerary before publishing. -->
             <p class="text-gold font-extrabold text-xs tracking-[.2em] uppercase" data-i18n="inc_h">What's Included</p>
             <ul class="space-y-1.5"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_4x4">Private air-conditioned Toyota Land Cruiser 4x4</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_guide">Multilingual driver-guide</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_meals">All gourmet meals (tagines, sand-baked bread)</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_water">Unlimited mineral water</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_camel_all">Camel trekking on every erg</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_nightly">Nightly stargazing &amp; luxury bivouac</span></li></ul>
             <p class="text-star/70 font-extrabold text-xs tracking-[.2em] uppercase pt-2" data-i18n="exc_h">What's Excluded</p>
@@ -713,7 +755,7 @@ tailwind.config = {
 <!-- ══ CHAPTER III : CAMP ══ -->
 <section id="camp" class="relative py-28 sm:py-40 overflow-hidden berber">
   <div data-parallax="0.12" class="absolute left-0 right-0 -top-[10%] h-[120%] overflow-hidden will-change-transform" aria-hidden="true">
-    <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/19a8298f6-45bd-4466-8484-840fdafb366c.png" alt="" loading="lazy" decoding="async" width="1200" height="900" class="kenburns w-full h-full object-cover opacity-30">
+    <img src="images/camp-interior.jpg" alt="" loading="lazy" decoding="async" width="1200" height="900" class="kenburns w-full h-full object-cover opacity-30">
   </div>
   <div class="absolute inset-0 bg-gradient-to-b from-midnight via-midnight/60 to-coal"></div>
   <div class="absolute inset-0 starfield opacity-30 pointer-events-none"></div>
@@ -730,7 +772,7 @@ tailwind.config = {
       <div class="reveal relative">
         <div class="arch-orn" aria-hidden="true"></div>
         <div class="img-zoom group relative overflow-hidden arch-frame border border-gold/40 shadow-gold h-[420px] sm:h-[540px]">
-          <img src="https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/19a8298f6-45bd-4466-8484-840fdafb366c.png" alt="Luxury desert tent interior with a real bed and premium bedding" loading="lazy" decoding="async" width="900" height="1100" class="w-full h-full object-cover">
+          <img src="images/camp-interior.jpg" alt="Luxury desert tent interior with a real bed and premium bedding" loading="lazy" decoding="async" width="900" height="1100" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-midnight/70 via-transparent to-transparent"></div>
         </div>
         <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full btn-gold px-7 py-3 text-midnight text-xs font-extrabold tracking-[.25em] uppercase" data-i18n="camp_badge">The Luxury Bivouac</span>
@@ -768,7 +810,7 @@ tailwind.config = {
     </div>
     <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-7 mt-20">
       <div class="reveal relative rounded-3xl border border-gold/20 bg-onyx p-8 shadow-lux lift"><h3 class="font-display text-xl text-star" data-i18n="s1_t">Premium Fleet &amp; Safety</h3><ul class="mt-5 space-y-2.5 text-sm text-star/80"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="inc_4x4">Private air-conditioned Toyota Land Cruiser 4x4</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s1_i2">Satellite communication on every expedition</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s1_i3">GPS-tracked routes, checked daily</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s1_i4">First-aid-trained guides &amp; full medical kit</span></li></ul></div>
-      <div class="reveal relative rounded-3xl border border-gold/20 bg-onyx p-8 shadow-lux lift"><h3 class="font-display text-xl text-star" data-i18n="s2_t">Licensed &amp; Insured</h3><ul class="mt-5 space-y-2.5 text-sm text-star/80"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="f_licensed">Licensed local tour operator</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="r4">Full travel insurance included</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="r1">48-hour free cancellation</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s2_i4">20% deposit via Card / PayPal — balance in cash on arrival</span></li></ul></div>
+      <div class="reveal relative rounded-3xl border border-gold/20 bg-onyx p-8 shadow-lux lift"><h3 class="font-display text-xl text-star" data-i18n="s2_t">Licensed &amp; Insured</h3><!-- REVIEW-MARKER (item 23): add your official tour-operator licence number here and in the footer before publishing. --><ul class="mt-5 space-y-2.5 text-sm text-star/80"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="f_licensed">Licensed local tour operator</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="r4">Full travel insurance included</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="r1">48-hour free cancellation</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s2_i4">20% deposit via Card / PayPal — balance in cash on arrival</span></li></ul></div>
       <div class="reveal relative rounded-3xl border border-gold/20 bg-onyx p-8 shadow-lux lift"><h3 class="font-display text-xl text-star" data-i18n="s3_t">Your Packing List</h3><ul class="mt-5 space-y-2.5 text-sm text-star/80"><li class="flex gap-2"><span class="text-gold">☐</span><span data-i18n="s3_i1">High-SPF sunscreen</span></li><li class="flex gap-2"><span class="text-gold">☐</span><span data-i18n="s3_i2">Sunglasses (polarised preferred)</span></li><li class="flex gap-2"><span class="text-gold">☐</span><span data-i18n="s3_i3">A wide-brim hat or cheche</span></li><li class="flex gap-2"><span class="text-gold">☐</span><span data-i18n="s3_i4">A warm jacket for chilly desert nights</span></li></ul><p class="text-xs text-star/65 mt-4 italic" data-i18n="s3_note">We provide everything else — from water to wonder.</p></div>
       <div class="reveal relative rounded-3xl border border-gold/20 bg-onyx p-8 shadow-lux lift"><h3 class="font-display text-xl text-star" data-i18n="s4_t">Gourmet Desert Table</h3><ul class="mt-5 space-y-2.5 text-sm text-star/80"><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s4_i1">Slow-cooked tagines &amp; sand-baked bread</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s4_i2">Vegetarian, vegan &amp; gluten-free on request</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s4_i3">Unlimited mineral water &amp; Berber whisky (mint tea)</span></li><li class="flex gap-2"><span class="text-gold">✓</span><span data-i18n="s4_i4">Fresh fruit, Moroccan pastries &amp; campfire desserts</span></li></ul></div>
     </div>
@@ -794,9 +836,16 @@ tailwind.config = {
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 mt-16 items-stretch">
       <div class="reveal relative">
         <div class="map-frame relative overflow-hidden rounded-3xl border border-gold/30 shadow-card h-[380px] sm:h-[520px]">
-          <iframe title="Map — Foum Zguid Trip base camp, Foum Zguid, Tata Province, Morocco"
-            src="https://maps.google.com/maps?q=Foum%20Zguid%2C%20Tata%20Province%2C%20Morocco&amp;z=12&amp;output=embed"
+          <iframe id="gmap" title="Map — Foum Zguid Trip base camp, Foum Zguid, Tata Province, Morocco"
+            data-src="https://maps.google.com/maps?q=Foum%20Zguid%2C%20Tata%20Province%2C%20Morocco&amp;z=12&amp;output=embed"
             class="map-dark absolute inset-0 w-full h-full border-0 block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div id="mapConsent" class="absolute inset-0 z-20 grid place-items-center bg-[#100d0a]/95 text-center px-6">
+            <div>
+              <p class="text-gold text-3xl" aria-hidden="true">🗺️</p>
+              <p class="text-star/85 text-sm leading-relaxed mt-3 max-w-xs mx-auto" data-i18n="map_consent">The map is loaded from Google Maps. Accept to display it — Google may set its own cookies.</p>
+              <button type="button" id="mapLoad" class="btn-gold mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-midnight text-sm font-extrabold tracking-wide" data-i18n="map_load">Load the map</button>
+            </div>
+          </div>
           <div class="absolute top-4 left-4 z-10 flex items-center gap-3 rounded-full bg-midnight/85 backdrop-blur border border-gold/40 px-4 py-2">
             <span class="relative flex w-2.5 h-2.5"><span class="absolute inset-0 rounded-full bg-gold ping-gold"></span><span class="relative w-2.5 h-2.5 rounded-full bg-gold"></span></span>
             <span class="text-xs font-extrabold tracking-[.18em] uppercase text-gold" data-i18n="find_badge">Foum Zguid Base Camp</span>
@@ -810,6 +859,7 @@ tailwind.config = {
 
       <div class="reveal">
         <h3 class="font-display text-2xl text-star" data-i18n="find_h3">How to Reach Foum Zguid</h3>
+        <!-- REVIEW-MARKER (item 21): the Marrakech (≈480 km / ±7h) and Agadir (≈320 km / ±5h) distances below are unverified. Check them against Google Maps for your actual route and update f1_d / f2_d in all four languages. -->
         <p class="text-star/80 text-sm leading-relaxed mt-3" data-i18n="find_intro">Wherever you land in Morocco, the golden road leads to our door. Choose your gateway:</p>
         <ul class="mt-8 space-y-5">
           <li class="lift rounded-2xl border border-gold/20 bg-onyx/80 p-6">
@@ -826,7 +876,7 @@ tailwind.config = {
           </li>
           <li class="lift rounded-2xl border border-gold/20 bg-onyx/80 p-6">
             <div class="flex items-center gap-4"><span class="grid place-items-center w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 text-gold shrink-0">🧭</span>
-              <div><h4 class="font-display text-lg text-star" data-i18n="f4_t">Coordinates &amp; Address</h4><p class="text-star/75 text-sm mt-1" data-i18n="f4_d">29.9536° N, 7.0569° W — Foum Zguid, Tata Province, Morocco. Message us on WhatsApp and we'll guide you in, dune by dune.</p></div></div>
+              <div><h4 class="font-display text-lg text-star" data-i18n="f4_t">Coordinates &amp; Address</h4><p class="text-star/75 text-sm mt-1" data-i18n="f4_d">30.0853° N, 6.8736° W — Foum Zguid, Tata Province, Morocco. Message us on WhatsApp and we'll guide you in, dune by dune.</p></div></div>
           </li>
         </ul>
       </div>
@@ -872,7 +922,7 @@ tailwind.config = {
           <div><label for="fPhone" class="block text-xs font-extrabold tracking-[.2em] uppercase text-gold mb-2" data-i18n="l_phone">WhatsApp Number *</label><input id="fPhone" name="phone" type="tel" required placeholder="+212 6XX-XXXXXX" class="field" autocomplete="tel"></div>
           <div><label for="fDate" class="block text-xs font-extrabold tracking-[.2em] uppercase text-gold mb-2" data-i18n="l_date">Start Date *</label><input id="fDate" name="date" type="date" required class="field"></div>
           <div><label for="fGuests" class="block text-xs font-extrabold tracking-[.2em] uppercase text-gold mb-2" data-i18n="l_guests">Number of Guests *</label><select id="fGuests" name="guests" required class="field"><option value="" disabled selected data-i18n="p_guests">Select guests…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-          <div><label for="fTour" class="block text-xs font-extrabold tracking-[.2em] uppercase text-gold mb-2" data-i18n="l_tour">Tour Selection *</label><select id="fTour" name="tour" required class="field"><option value="" disabled selected data-i18n="p_tour">Choose your experience…</option><option data-i18n="o1">Sunset Camel Ride — From €39</option><option data-i18n="o2">Erg Chegaga 4x4 Expedition — From €95</option><option data-i18n="o3">Starlight Bivouac (2 Days / 1 Night) — From €139</option><option data-i18n="o4">Grand Sahara Odyssey (6 Days / 5 Nights) — From €299</option><option data-i18n="o5">Custom Circuit / Not Sure Yet</option></select></div>
+          <div><label for="fTour" class="block text-xs font-extrabold tracking-[.2em] uppercase text-gold mb-2" data-i18n="l_tour">Tour Selection *</label><select id="fTour" name="tour" required class="field"><option value="" disabled selected data-i18n="p_tour">Choose your experience…</option><option value="camel" data-i18n="o1">Sunset Camel Ride — From €39</option><option value="chegaga" data-i18n="o2">Erg Chegaga 4x4 Expedition — From €95</option><option value="bivouac" data-i18n="o3">Starlight Bivouac (2 Days / 1 Night) — From €139</option><option value="odyssey" data-i18n="o4">Grand Sahara Odyssey (6 Days / 5 Nights) — From €299</option><option value="custom" data-i18n="o5">Custom Circuit / Not Sure Yet</option></select></div>
           <div class="sm:col-span-2"><label for="fReq" class="block text-xs font-extrabold tracking-[.2em] uppercase text-gold mb-2" data-i18n="l_req">Special Requests</label><textarea id="fReq" name="requests" rows="4" placeholder="Dietary needs (vegetarian / vegan / gluten-free), celebrations, mobility notes…" data-i18n-ph="p_req" class="field resize-none"></textarea></div>
         </div>
         <button type="submit" class="btn-gold magnet w-full mt-9 inline-flex justify-center items-center gap-3 rounded-full px-8 py-4 text-midnight font-extrabold tracking-[.15em] uppercase text-sm shadow-gold"><span data-i18n="submit">✦ Send Golden Request</span></button>
@@ -880,9 +930,9 @@ tailwind.config = {
       </form>
       <div id="successState" class="hidden relative rounded-3xl border border-gold/50 bg-midnight/95 backdrop-blur-xl p-9 sm:p-14 shadow-gold text-center">
         <span class="mx-auto grid place-items-center w-20 h-20 rounded-full btn-gold text-midnight text-4xl font-black">✓</span>
-        <h3 class="font-display text-3xl sm:text-4xl mt-7 text-gold-grad" data-i18n="succ_title">Request Received</h3>
-        <p class="text-star/85 leading-relaxed mt-5 max-w-md mx-auto"><span data-i18n="succ_thanks">Thank you,</span> <span id="sName" class="text-gold font-bold">traveller</span>! <span data-i18n="succ_mid1">Your golden request for</span> <span id="sTour" class="text-gold font-bold">your expedition</span> <span id="sMeta" class="text-gold font-bold"></span> <span data-i18n="succ_mid2">is with our desert desk. We will reply on WhatsApp within a few hours.</span></p>
-        <p class="text-star/70 text-xs mt-4" data-i18n="succ_saved">✓ Your request details are safely saved on this device — no request ever gets lost.</p>
+        <h3 class="font-display text-3xl sm:text-4xl mt-7 text-gold-grad" data-i18n="succ_title">One Last Step</h3>
+        <p class="text-star/85 leading-relaxed mt-5 max-w-md mx-auto"><span data-i18n="succ_thanks">Thank you,</span> <span id="sName" class="text-gold font-bold">traveller</span>! <span data-i18n="succ_mid1">Your golden request for</span> <span id="sTour" class="text-gold font-bold">your expedition</span> <span id="sMeta" class="text-gold font-bold"></span> <span data-i18n="succ_mid2">is ready. Tap the WhatsApp button below to send it to our desert desk — we reply within a few hours.</span></p>
+        <p class="text-star/70 text-xs mt-4" data-i18n="succ_saved">✓ Your details are saved on this device. Nothing is sent until you press WhatsApp or Email.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4 mt-9">
           <a id="sWa" href="https://wa.me/212767524630" target="_blank" rel="noopener" class="btn-gold inline-flex justify-center items-center gap-2 rounded-full px-7 py-3.5 text-midnight font-extrabold text-sm" data-i18n="succ_wa">Continue on WhatsApp</a>
           <a id="sMail" href="mailto:foumzguidtrip@gmail.com" class="btn-ghost inline-flex justify-center items-center gap-2 rounded-full px-7 py-3.5 font-bold text-sm" data-i18n="succ_mail">Email Your Request</a>
@@ -930,9 +980,10 @@ tailwind.config = {
   <span class="watermark" aria-hidden="true">SAHARA</span>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
     <div>
-      <img src="logo.png" onerror="this.onerror=null;this.src='https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1a8e92398-afdb-4018-a77d-91a9b0b3d003.png';" alt="Foum Zguid Trip logo" loading="lazy" decoding="async" width="160" height="90" class="h-16 w-auto rounded-xl ring-1 ring-gold/40 bg-star object-cover">
+      <img src="images/logo.png" alt="Foum Zguid Trip logo" loading="lazy" decoding="async" width="160" height="90" class="h-16 w-auto rounded-xl ring-1 ring-gold/40 bg-star object-cover">
       <p class="text-star/75 text-sm leading-relaxed mt-6" data-i18n="f_about">High-end nomadic luxury from the oasis of Foum Zguid to the great ergs. Serenity, stars and sand — written in gold.</p>
       <p class="text-gold text-[10px] font-extrabold tracking-[.25em] uppercase mt-5" data-i18n="f_licensed">Licensed Local Tour Operator</p>
+      <!-- REVIEW-MARKER (item 23): insert your official licence number here (e.g. "Licence N° 123/2019"). -->
     </div>
     <div><h3 class="font-display text-lg text-gold mb-5" data-i18n="f_contact_h">Contact</h3><address class="not-italic space-y-3.5 text-sm text-star/80"><p><a href="tel:+212767524630" class="hover:text-gold transition-colors">📞 +212 767-524630</a></p><p><a href="https://wa.me/212767524630" target="_blank" rel="noopener" class="hover:text-gold transition-colors">💬 WhatsApp: +212 767-524630</a></p><p><a href="mailto:foumzguidtrip@gmail.com" class="hover:text-gold transition-colors">✉️ foumzguidtrip@gmail.com</a></p><p><a href="https://www.instagram.com/_foum_zguid_trip" target="_blank" rel="noopener" class="hover:text-gold transition-colors">📷 @_foum_zguid_trip</a></p><p>📍 Foum Zguid, Tata Province, Morocco</p></address></div>
     <div><h3 class="font-display text-lg text-gold mb-5" data-i18n="f_explore_h">Explore</h3><ul class="space-y-3.5 text-sm text-star/80"><li><a href="#circuit" class="hover:text-gold transition-colors" data-i18n="ex1">The Grand Circuit</a></li><li><a href="#experiences" class="hover:text-gold transition-colors" data-i18n="ex2">Experiences &amp; Packages</a></li><li><a href="#camp" class="hover:text-gold transition-colors" data-i18n="ex3">The Luxury Bivouac</a></li><li><a href="#safety" class="hover:text-gold transition-colors" data-i18n="ex4">Safety &amp; Logistics</a></li><li><a href="#findus" class="hover:text-gold transition-colors" data-i18n="ex5">Find Us — Map &amp; Directions</a></li><li><a href="#booking" class="hover:text-gold transition-colors" data-i18n="ex6">Book Your Trip</a></li><li><a href="#privacy" id="pvFooterLink" class="hover:text-gold transition-colors text-gold/90 font-semibold" data-i18n="f_privacy">Privacy Policy</a></li></ul></div>
@@ -992,20 +1043,20 @@ tailwind.config = {
   "use strict";
   var $=function(s,c){return (c||document).querySelector(s);};
   var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
-  var LOGO_FALLBACK='https://image.qwenlm.ai/public_source/e40d7d5e-5b08-4047-bd8a-9bef910ff9d1/1a8e92398-afdb-4018-a77d-91a9b0b3d003.png';
+  var LOGO_FALLBACK='images/logo.png';
 
   /* ═══════════ i18n — EN / FR / ES / DE ═══════════ */
   var I18N={
   en:{
-    _title:"Foum Zguid Trip — Luxury Sahara Expeditions | Foum Zguid, Tata, Morocco",
-    _desc:"Private nomadic expeditions from Marrakech to Merzouga. Lake Iriki, Erg Lmahazil, Erg Chegaga. Luxury bivouacs, camel treks & starlight dinners. WhatsApp +212 767-524630",
+    _title:"Foum Zguid Trip — Luxury Sahara Desert Tours, Morocco",
+    _desc:"Luxury Sahara tours from Foum Zguid, Morocco — camel treks, 4x4 dune crossings and starlight bivouacs from Marrakech to Merzouga. Book on WhatsApp.",
     nav_circuit:"The Circuit",nav_exp:"Experiences",nav_camp:"Luxury Camp",nav_safety:"Safety",nav_find:"Find Us",nav_faq:"FAQ",nav_contact:"Contact",nav_book:"✦ Book Now",
     loader_sub:"— the caravan awaits —",
     hero_chapter:"— Prologue · a journey written in the stars —",hero_eyebrow:"Foum Zguid · Tata Province · Morocco",
     hero_w1:"The",hero_w2:"Sahara,",hero_w3:"Written",hero_w4:"in",hero_w5:"Gold.",
     hero_lede:"Private nomadic expeditions from Marrakech to Merzouga — fossil lakes, silent ergs and starlight bivouacs of absolute serenity. Travel as the caravans did, in high-end comfort.",
     hero_cta1:"Begin Your Journey",hero_cta2:"Explore the Circuit ↓",scroll:"Scroll",
-    st1:"Legendary Stops",st2:"Guest Rating",st3:"Free Cancellation",st4:"Licensed & Insured",
+    st1:"Legendary Stops",st2:"WhatsApp Support",st3:"Free Cancellation",st4:"Licensed & Insured",
     mq_lux:"Luxury Bivouacs",mq_camel:"Camel Caravans",mq_star:"Stargazing",
     circuit_chapter:"— Chapter I · The Golden Road —",circuit_eyebrow:"The Grand Saharan Circuit",
     circuit_h2:"One Road. <span class='text-gold-grad'>Ten Miracles.</span>",
@@ -1079,7 +1130,7 @@ tailwind.config = {
     f1_t:"From Marrakech",f1_d:"≈ 480 km · ± 7h scenic drive via Ouarzazate & Tazenakht — or let our private A/C 4x4 pick you up at your riad.",
     f2_t:"From Agadir",f2_d:"≈ 320 km · ± 5h via Taroudant and the Anti-Atlas passes — olive valleys, argan groves and amber canyons.",
     f3_t:"Nearest Airports",f3_d:"Marrakech Menara (RAK) · Agadir Al Massira (AGA) · Ouarzazate (OZZ) — private transfers arranged on request.",
-    f4_t:"Coordinates & Address",f4_d:"29.9536° N, 7.0569° W — Foum Zguid, Tata Province, Morocco. Message us on WhatsApp and we'll guide you in, dune by dune.",
+    f4_t:"Coordinates & Address",f4_d:"30.0853° N, 6.8736° W — Foum Zguid, Tata Province, Morocco. Message us on WhatsApp and we'll guide you in, dune by dune.",
     book_chapter:"— Chapter VI · Seal the Journey —",book_eyebrow:"Advanced Booking",
     book_h2:"Reserve Your<br><span class='text-gold-grad'>Golden Request.</span>",
     book_lede:"Send your request and our desert desk replies within hours. A 20% deposit via Card / PayPal secures your dates — the balance is settled in cash on arrival. Cancel free of charge up to 48 hours before departure.",
@@ -1092,9 +1143,9 @@ tailwind.config = {
     o1:"Sunset Camel Ride — From €39",o2:"Erg Chegaga 4x4 Expedition — From €95",
     o3:"Starlight Bivouac (2 Days / 1 Night) — From €139",o4:"Grand Sahara Odyssey (6 Days / 5 Nights) — From €299",o5:"Custom Circuit / Not Sure Yet",
     submit:"✦ Send Golden Request",form_or:"Prefer email? Write to",
-    succ_title:"Request Received",succ_thanks:"Thank you,",succ_mid1:"Your golden request for",
-    succ_mid2:"is with our desert desk. We will reply on WhatsApp within a few hours.",
-    succ_saved:"✓ Your request details are safely saved on this device — no request ever gets lost.",
+    succ_title:"One Last Step",succ_thanks:"Thank you,",succ_mid1:"Your golden request for",
+    succ_mid2:"is ready. Tap the WhatsApp button below to send it to our desert desk — we reply within a few hours.",
+    succ_saved:"✓ Your details are saved on this device. Nothing is sent until you press WhatsApp or Email.",
     succ_wa:"Continue on WhatsApp",succ_mail:"Email Your Request",succ_reset:"Send another request",
     party:"party of",starting:"starting",
     faq_chapter:"— Epilogue · Wisdom of the Nomads —",faq_eyebrow:"Caravan Wisdom",
@@ -1119,25 +1170,26 @@ tailwind.config = {
     jr1:"Prologue",jr2:"The Road",jr3:"Rites of Sand",jr4:"Starlit Sanctuary",jr5:"Guardians",jr6:"Guiding Star",jr7:"Seal the Journey",
     mobile_cta:"✦ Book Now — Reserve Your Golden Request",wa_tip:"Chat with us · +212 767-524630",lang_label:"Change language",
     privacy_title:"Privacy Policy",privacy_sub:"— Legal · Your Trust —",
-    pv1_h:"1 · Data We Collect",pv1_d:"When you send a booking request we receive your name, email, WhatsApp number, travel dates and any special requests. These details are used solely to plan and confirm your expedition. Form drafts are saved locally on your own device.",
+    pv1_h:"1 · Data We Collect",pv1_d:"This form does not send anything to a server. Your name, email, WhatsApp number, travel dates and special requests stay in your browser's local storage on your own device, and are only transmitted when you choose to press the WhatsApp or Email button. We then use them solely to plan and confirm your expedition.",
     pv2_h:"2 · Communication",pv2_d:"Contact via WhatsApp or email is initiated by you. We never send newsletters or marketing messages without your explicit consent, and we never share your contact details with third parties.",
     pv3_h:"3 · Cookies & Local Storage",pv3_d:"This website uses only functional local storage: your language preference, form drafts and your cookie choice. We use no tracking cookies, no analytics scripts and no advertising networks.",
     pv4_h:"4 · Third-Party Services",pv4_d:"The “Find Us” section embeds a Google Maps frame to show our location; this is subject to Google's own privacy policy. WhatsApp links open Meta's WhatsApp service, subject to Meta's policy.",
     pv5_h:"5 · Your Rights",pv5_d:"You may request access to, correction of, or deletion of your personal data at any time. Simply write to foumzguidtrip@gmail.com or message us on WhatsApp — we respond within 72 hours.",
     pv_close:"Close",
     cookie_text:"We use only essential local storage to remember your language and form drafts — no trackers, no ads.",
+    map_consent:"The map is loaded from Google Maps. Accept to display it — Google may set its own cookies.",map_load:"Load the map",
     cookie_accept:"Accept",cookie_decline:"Decline",cookie_more:"Privacy Policy"
   },
   fr:{
-    _title:"Foum Zguid Trip — Expéditions de Luxe au Sahara | Foum Zguid, Tata, Maroc",
-    _desc:"Expéditions nomades privées de Marrakech à Merzouga. Lac Iriki, Erg Lmahazil, Erg Chegaga. Bivouacs de luxe, méharées et dîners étoilés. WhatsApp +212 767-524630",
+    _title:"Foum Zguid Trip — Circuits de Luxe au Sahara, Maroc",
+    _desc:"Circuits de luxe au Sahara depuis Foum Zguid, Maroc — méharées, 4x4 dans les dunes et bivouacs étoilés de Marrakech à Merzouga. Réservez sur WhatsApp.",
     nav_circuit:"Le Circuit",nav_exp:"Expériences",nav_camp:"Camp de Luxe",nav_safety:"Sécurité",nav_find:"Nous Trouver",nav_faq:"FAQ",nav_contact:"Contact",nav_book:"✦ Réserver",
     loader_sub:"— la caravane attend —",
     hero_chapter:"— Prologue · un voyage écrit dans les étoiles —",hero_eyebrow:"Foum Zguid · Province de Tata · Maroc",
     hero_w1:"Le",hero_w2:"Sahara,",hero_w3:"Écrit",hero_w4:"en",hero_w5:"Or.",
     hero_lede:"Expéditions nomades privées de Marrakech à Merzouga — lacs fossiles, ergs silencieux et bivouacs étoilés d'une sérénité absolue. Voyagez comme les caravanes d'autrefois, dans un confort haut de gamme.",
     hero_cta1:"Commencez votre voyage",hero_cta2:"Explorer le circuit ↓",scroll:"Défiler",
-    st1:"Étapes légendaires",st2:"Note des voyageurs",st3:"Annulation gratuite",st4:"Licencié & assuré",
+    st1:"Étapes légendaires",st2:"Assistance WhatsApp",st3:"Annulation gratuite",st4:"Agréé & assuré",
     mq_lux:"Bivouacs de Luxe",mq_camel:"Caravanes de Chameaux",mq_star:"Observation des Étoiles",
     circuit_chapter:"— Chapitre I · La Route d'Or —",circuit_eyebrow:"Le Grand Circuit Saharien",
     circuit_h2:"Une seule route. <span class='text-gold-grad'>Dix miracles.</span>",
@@ -1198,20 +1250,20 @@ tailwind.config = {
     safety_h2:"Chaque objection, <span class='text-gold-grad'>répondue.</span>",
     safety_lede:"L'aventure, sans le moindre compromis sur le confort ou la sécurité.",
     s1_t:"Flotte premium & sécurité",s1_i2:"Communication satellite à chaque expédition",s1_i3:"Itinéraires GPS suivis et vérifiés chaque jour",s1_i4:"Guides formés aux premiers secours & trousse médicale complète",
-    s2_t:"Licencié & assuré",s2_i4:"Acompte de 20 % par carte / PayPal — solde en espèces à l'arrivée",
+    s2_t:"Agréé & assuré",s2_i4:"Acompte de 20 % par carte / PayPal — solde en espèces à l'arrivée",
     s3_t:"Votre liste de bagages",s3_i1:"Écran solaire haute protection",s3_i2:"Lunettes de soleil (polarisées de préférence)",s3_i3:"Chapeau à larges bords ou chèche",s3_i4:"Veste chaude pour les nuits fraîches du désert",
     s3_note:"Nous fournissons tout le reste — de l'eau à l'émerveillement.",
     s4_t:"Table gastronomique du désert",s4_i1:"Tajines mijotés & pain cuit dans le sable",s4_i2:"Végétarien, végan & sans gluten sur demande",
     s4_i3:"Eau minérale à volonté & « whisky berbère » (thé à la menthe)",s4_i4:"Fruits frais, pâtisseries marocaines & desserts au feu de camp",
     find_chapter:"— Chapitre V · L'Étoile Guide —",find_eyebrow:"Nous Trouver",
     find_h2:"Votre chemin vers <span class='text-gold-grad'>l'oasis.</span>",
-    find_lede:"Notre camp de base vous attend au bord des grandes sables — voici exactement comment nous rejoindre.",
+    find_lede:"Notre camp de base vous attend au bord des grands sables — voici exactement comment nous rejoindre.",
     find_badge:"Camp de Base Foum Zguid",find_map_btn:"📍 Ouvrir dans Google Maps",find_wa_btn:"💬 Itinéraire en direct",
     find_h3:"Comment rejoindre Foum Zguid",find_intro:"Où que vous atterrissiez au Maroc, la route d'or mène à notre porte. Choisissez votre porte d'entrée :",
     f1_t:"Depuis Marrakech",f1_d:"≈ 480 km · ± 7 h de route panoramique via Ouarzazate & Tazenakht — ou laissez notre 4x4 climatisé privé venir vous chercher à votre riad.",
     f2_t:"Depuis Agadir",f2_d:"≈ 320 km · ± 5 h via Taroudant et les cols de l'Anti-Atlas — vallées d'oliviers, arganeraies et canyons ambrés.",
     f3_t:"Aéroports les plus proches",f3_d:"Marrakech Ménara (RAK) · Agadir Al Massira (AGA) · Ouarzazate (OZZ) — transferts privés organisés sur demande.",
-    f4_t:"Coordonnées & adresse",f4_d:"29,9536° N, 7,0569° O — Foum Zguid, province de Tata, Maroc. Écrivez-nous sur WhatsApp et nous vous guiderons, dune après dune.",
+    f4_t:"Coordonnées & adresse",f4_d:"30,0853° N, 6,8736° O — Foum Zguid, province de Tata, Maroc. Écrivez-nous sur WhatsApp et nous vous guiderons, dune après dune.",
     book_chapter:"— Chapitre VI · Sceller le Voyage —",book_eyebrow:"Réservation Avancée",
     book_h2:"Réservez votre<br><span class='text-gold-grad'>demande dorée.</span>",
     book_lede:"Envoyez votre demande et notre équipe du désert répond sous quelques heures. Un acompte de 20 % par carte / PayPal garantit vos dates — le solde se règle en espèces à l'arrivée. Annulation gratuite jusqu'à 48 heures avant le départ.",
@@ -1224,9 +1276,9 @@ tailwind.config = {
     o1:"Balade à chameau au coucher du soleil — Dès 39 €",o2:"Expédition 4x4 Erg Chegaga — Dès 95 €",
     o3:"Bivouac sous les étoiles (2 jours / 1 nuit) — Dès 139 €",o4:"Grande Odyssée du Sahara (6 jours / 5 nuits) — Dès 299 €",o5:"Circuit sur mesure / Pas encore décidé",
     submit:"✦ Envoyer la demande dorée",form_or:"Vous préférez l'e-mail ? Écrivez à",
-    succ_title:"Demande reçue",succ_thanks:"Merci,",succ_mid1:"Votre demande dorée pour",
-    succ_mid2:"est entre les mains de notre équipe du désert. Nous répondrons sur WhatsApp sous quelques heures.",
-    succ_saved:"✓ Les détails de votre demande sont enregistrés sur cet appareil — aucune demande ne se perd.",
+    succ_title:"Une dernière étape",succ_thanks:"Merci,",succ_mid1:"Votre demande dorée pour",
+    succ_mid2:"est prête. Appuyez sur le bouton WhatsApp ci-dessous pour l'envoyer à notre équipe du désert — nous répondons sous quelques heures.",
+    succ_saved:"✓ Vos informations sont enregistrées sur cet appareil. Rien n'est envoyé avant que vous appuyiez sur WhatsApp ou E-mail.",
     succ_wa:"Continuer sur WhatsApp",succ_mail:"Envoyer par e-mail",succ_reset:"Envoyer une autre demande",
     party:"groupe de",starting:"dès le",
     faq_chapter:"— Épilogue · Sagesse des Nomades —",faq_eyebrow:"Sagesse Nomade",
@@ -1251,25 +1303,26 @@ tailwind.config = {
     jr1:"Prologue",jr2:"La Route",jr3:"Rites de Sable",jr4:"Sanctuaire Étoilé",jr5:"Gardiens",jr6:"Étoile Guide",jr7:"Sceller le Voyage",
     mobile_cta:"✦ Réserver — Demande Dorée",wa_tip:"Écrivez-nous · +212 767-524630",lang_label:"Changer de langue",
     privacy_title:"Politique de Confidentialité",privacy_sub:"— Légal · Votre Confiance —",
-    pv1_h:"1 · Données collectées",pv1_d:"Lorsque vous envoyez une demande de réservation, nous recevons votre nom, e-mail, numéro WhatsApp, dates de voyage et demandes spéciales. Ces informations servent uniquement à planifier et confirmer votre expédition. Les brouillons sont enregistrés localement sur votre appareil.",
+    pv1_h:"1 · Données collectées",pv1_d:"Ce formulaire n'envoie rien à un serveur. Votre nom, e-mail, numéro WhatsApp, dates de voyage et demandes spéciales restent dans le stockage local de votre navigateur, sur votre appareil, et ne sont transmis que lorsque vous appuyez sur le bouton WhatsApp ou E-mail. Nous les utilisons alors uniquement pour planifier et confirmer votre expédition.",
     pv2_h:"2 · Communication",pv2_d:"Le contact via WhatsApp ou e-mail est initié par vous. Nous n'envoyons aucune newsletter ni message marketing sans votre consentement explicite, et nous ne partageons jamais vos coordonnées avec des tiers.",
     pv3_h:"3 · Cookies et stockage local",pv3_d:"Ce site n'utilise que le stockage local fonctionnel : votre langue, les brouillons de formulaire et votre choix de cookies. Aucun cookie de suivi, aucun script d'analyse, aucune régie publicitaire.",
     pv4_h:"4 · Services tiers",pv4_d:"La section « Nous trouver » intègre une carte Google Maps pour afficher notre emplacement, soumise à la politique de confidentialité de Google. Les liens WhatsApp ouvrent le service de Meta, soumis à sa propre politique.",
     pv5_h:"5 · Vos droits",pv5_d:"Vous pouvez demander l'accès, la rectification ou la suppression de vos données à tout moment. Écrivez à foumzguidtrip@gmail.com ou contactez-nous sur WhatsApp — réponse sous 72 heures.",
     pv_close:"Fermer",
     cookie_text:"Nous n'utilisons que le stockage local essentiel pour retenir votre langue et vos brouillons — aucun traceur, aucune publicité.",
+    map_consent:"La carte est chargée depuis Google Maps. Acceptez pour l'afficher — Google peut déposer ses propres cookies.",map_load:"Afficher la carte",
     cookie_accept:"Accepter",cookie_decline:"Refuser",cookie_more:"Politique de confidentialité"
   },
   es:{
-    _title:"Foum Zguid Trip — Expediciones de Lujo al Sahara | Foum Zguid, Tata, Marruecos",
-    _desc:"Expediciones nómadas privadas de Marrakech a Merzouga. Lago Iriki, Erg Lmahazil, Erg Chegaga. Bivouacs de lujo, paseos en camello y cenas estelares. WhatsApp +212 767-524630",
+    _title:"Foum Zguid Trip — Tours de Lujo por el Sahara, Marruecos",
+    _desc:"Tours de lujo por el Sahara desde Foum Zguid, Marruecos — camellos, 4x4 en las dunas y bivouacs estelares de Marrakech a Merzouga. Reserva por WhatsApp.",
     nav_circuit:"El Circuito",nav_exp:"Experiencias",nav_camp:"Campamento de Lujo",nav_safety:"Seguridad",nav_find:"Encuéntrenos",nav_faq:"Preguntas",nav_contact:"Contacto",nav_book:"✦ Reservar",
     loader_sub:"— la caravana espera —",
     hero_chapter:"— Prólogo · un viaje escrito en las estrellas —",hero_eyebrow:"Foum Zguid · Provincia de Tata · Marruecos",
-    hero_w1:"El",hero_w2:"Sáhara,",hero_w3:"Escrito",hero_w4:"en",hero_w5:"Oro.",
-    hero_lede:"Expediciones nómadas privadas de Marrakech a Merzouga — lagos fósiles, ergs silenciosos y bivouacs estelares de absoluta serenidad. Viaja como las caravanas, con comfort de alta gama.",
+    hero_w1:"El",hero_w2:"Sahara,",hero_w3:"Escrito",hero_w4:"en",hero_w5:"Oro.",
+    hero_lede:"Expediciones nómadas privadas de Marrakech a Merzouga — lagos fósiles, ergs silenciosos y bivouacs estelares de absoluta serenidad. Viaja como las caravanas, con confort de alta gama.",
     hero_cta1:"Comienza tu viaje",hero_cta2:"Explorar el circuito ↓",scroll:"Desplazar",
-    st1:"Etapas legendarias",st2:"Valoración de viajeros",st3:"Cancelación gratuita",st4:"Licenciado y asegurado",
+    st1:"Etapas legendarias",st2:"Atención por WhatsApp",st3:"Cancelación gratuita",st4:"Licenciado y asegurado",
     mq_lux:"Bivouacs de Lujo",mq_camel:"Caravanas de Camellos",mq_star:"Observación de Estrellas",
     circuit_chapter:"— Capítulo I · El Camino Dorado —",circuit_eyebrow:"El Gran Circuito Sahariano",
     circuit_h2:"Un camino. <span class='text-gold-grad'>Diez milagros.</span>",
@@ -1295,7 +1348,7 @@ tailwind.config = {
     stop9_desc:"El último oasis antes de la arena infinita — donde el asfalto se rinde y empiezan las dunas. Los fantasmas de las caravanas de Tombuctú aún recorren las callejas al anochecer.",
     stop10_tag:"Amanecer sobre el Erg Chebbi",
     stop10_desc:"El gran final bajo las dunas gigantes del Erg Chebbi. El alba sube como un tambor lento — el Sahara no es un lugar que visitas, es un lugar que entra en ti.",
-    exp_chapter:"— Capítulo II · Ritos de la Arena —",exp_eyebrow:"Experiencias Útimas",
+    exp_chapter:"— Capítulo II · Ritos de la Arena —",exp_eyebrow:"Experiencias Definitivas",
     exp_h2:"Elige tu <span class='text-gold-grad'>hora dorada</span>",
     exp_lede:"Cuatro puertas al desierto — cada una artesanal, privada e inolvidable. Todos los programas salen de nuestro campamento base de Foum Zguid salvo indicación.",
     c1_badge:"Hora Dorada",c1_title:"Paseo en Camello al Atardecer",
@@ -1343,7 +1396,7 @@ tailwind.config = {
     f1_t:"Desde Marrakech",f1_d:"≈ 480 km · ± 7 h de ruta panorámica vía Ouarzazate y Tazenakht — o deja que nuestro 4x4 privado climatizado te recoja en tu riad.",
     f2_t:"Desde Agadir",f2_d:"≈ 320 km · ± 5 h vía Taroudant y los puertos del Anti-Atlas — valles de olivos, arganales y cañones ámbar.",
     f3_t:"Aeropuertos más cercanos",f3_d:"Marrakech Menara (RAK) · Agadir Al Massira (AGA) · Ouarzazate (OZZ) — traslados privados bajo petición.",
-    f4_t:"Coordenadas y dirección",f4_d:"29.9536° N, 7.0569° O — Foum Zguid, provincia de Tata, Marruecos. Escríbenos por WhatsApp y te guiaremos duna a duna.",
+    f4_t:"Coordenadas y dirección",f4_d:"30.0853° N, 6.8736° O — Foum Zguid, provincia de Tata, Marruecos. Escríbenos por WhatsApp y te guiaremos duna a duna.",
     book_chapter:"— Capítulo VI · Sellar el Viaje —",book_eyebrow:"Reserva Anticipada",
     book_h2:"Reserva tu<br><span class='text-gold-grad'>solicitud dorada.</span>",
     book_lede:"Envía tu solicitud y nuestro equipo del desierto responde en pocas horas. Un depósito del 20 % con tarjeta / PayPal asegura tus fechas — el resto se paga en efectivo a la llegada. Cancelación gratuita hasta 48 horas antes de la salida.",
@@ -1356,9 +1409,9 @@ tailwind.config = {
     o1:"Paseo en camello al atardecer — Desde 39 €",o2:"Expedición 4x4 Erg Chegaga — Desde 95 €",
     o3:"Bivouac bajo las estrellas (2 días / 1 noche) — Desde 139 €",o4:"Gran Odisea del Sahara (6 días / 5 noches) — Desde 299 €",o5:"Circuito a medida / Aún no lo sé",
     submit:"✦ Enviar solicitud dorada",form_or:"¿Prefieres el email? Escribe a",
-    succ_title:"Solicitud recibida",succ_thanks:"Gracias,",succ_mid1:"Tu solicitud dorada para",
-    succ_mid2:"está con nuestro equipo del desierto. Responderemos por WhatsApp en pocas horas.",
-    succ_saved:"✓ Los detalles de tu solicitud están guardados en este dispositivo — ninguna solicitud se pierde.",
+    succ_title:"Un último paso",succ_thanks:"Gracias,",succ_mid1:"Tu solicitud dorada para",
+    succ_mid2:"está lista. Pulsa el botón de WhatsApp de abajo para enviarla a nuestro equipo del desierto — respondemos en pocas horas.",
+    succ_saved:"✓ Tus datos están guardados en este dispositivo. Nada se envía hasta que pulses WhatsApp o Email.",
     succ_wa:"Continuar por WhatsApp",succ_mail:"Enviar por email",succ_reset:"Enviar otra solicitud",
     party:"grupo de",starting:"desde el",
     faq_chapter:"— Epílogo · Sabiduría de los Nómadas —",faq_eyebrow:"Sabiduría Nómada",
@@ -1383,25 +1436,26 @@ tailwind.config = {
     jr1:"Prólogo",jr2:"El Camino",jr3:"Ritos de Arena",jr4:"Santuario Estrellado",jr5:"Guardianes",jr6:"Estrella Guía",jr7:"Sellar el Viaje",
     mobile_cta:"✦ Reservar — Solicitud Dorada",wa_tip:"Escríbenos · +212 767-524630",lang_label:"Cambiar idioma",
     privacy_title:"Política de Privacidad",privacy_sub:"— Legal · Tu Confianza —",
-    pv1_h:"1 · Datos que recopilamos",pv1_d:"Cuando envías una solicitud de reserva recibimos tu nombre, email, número de WhatsApp, fechas y peticiones especiales. Estos datos se usan únicamente para planificar y confirmar tu expedición. Los borradores se guardan localmente en tu dispositivo.",
+    pv1_h:"1 · Datos que recopilamos",pv1_d:"Este formulario no envía nada a un servidor. Tu nombre, email, número de WhatsApp, fechas y peticiones especiales permanecen en el almacenamiento local de tu navegador, en tu propio dispositivo, y solo se transmiten cuando pulsas el botón de WhatsApp o Email. Entonces los usamos únicamente para planificar y confirmar tu expedición.",
     pv2_h:"2 · Comunicación",pv2_d:"El contacto por WhatsApp o email lo inicias tú. Nunca enviamos boletines ni mensajes comerciales sin tu consentimiento expreso, y nunca compartimos tus datos con terceros.",
     pv3_h:"3 · Cookies y almacenamiento local",pv3_d:"Este sitio solo usa almacenamiento local funcional: tu idioma, los borradores del formulario y tu elección de cookies. Sin cookies de rastreo, sin analítica, sin publicidad.",
     pv4_h:"4 · Servicios de terceros",pv4_d:"La sección «Encuéntrenos» integra un mapa de Google Maps para mostrar nuestra ubicación, sujeto a la política de privacidad de Google. Los enlaces de WhatsApp abren el servicio de Meta, sujeto a su propia política.",
     pv5_h:"5 · Tus derechos",pv5_d:"Puedes solicitar el acceso, la rectificación o la supresión de tus datos en cualquier momento. Escribe a foumzguidtrip@gmail.com o contáctanos por WhatsApp — respondemos en 72 horas.",
     pv_close:"Cerrar",
     cookie_text:"Solo usamos almacenamiento local esencial para recordar tu idioma y tus borradores — sin rastreadores, sin anuncios.",
+    map_consent:"El mapa se carga desde Google Maps. Acepta para mostrarlo — Google puede instalar sus propias cookies.",map_load:"Mostrar el mapa",
     cookie_accept:"Aceptar",cookie_decline:"Rechazar",cookie_more:"Política de privacidad"
   },
   de:{
-    _title:"Foum Zguid Trip — Luxus-Sahara-Expeditionen | Foum Zguid, Tata, Marokko",
-    _desc:"Private Nomaden-Expeditionen von Marrakesch nach Merzouga. Iriki-See, Erg Lmahazil, Erg Chegaga. Luxus-Biwaks, Kameltrekkings & Sterndinner. WhatsApp +212 767-524630",
+    _title:"Foum Zguid Trip — Luxus-Sahara-Touren in Marokko",
+    _desc:"Luxus-Sahara-Touren ab Foum Zguid, Marokko — Kameltrekking, 4x4-Dünentouren und Sternen-Biwaks von Marrakesch nach Merzouga. Buchung per WhatsApp.",
     nav_circuit:"Die Route",nav_exp:"Erlebnisse",nav_camp:"Luxuscamp",nav_safety:"Sicherheit",nav_find:"Finden Sie uns",nav_faq:"FAQ",nav_contact:"Kontakt",nav_book:"✦ Jetzt buchen",
     loader_sub:"— die Karawane wartet —",
     hero_chapter:"— Prolog · eine Reise, geschrieben in den Sternen —",hero_eyebrow:"Foum Zguid · Provinz Tata · Marokko",
     hero_w1:"Die",hero_w2:"Sahara,",hero_w3:"geschrieben",hero_w4:"in",hero_w5:"Gold.",
     hero_lede:"Private Nomaden-Expeditionen von Marrakesch nach Merzouga — fossile Seen, stille Ergs und sternenhelle Biwaks absoluter Gelassenheit. Reisen Sie wie die Karawanen — mit höchstem Komfort.",
     hero_cta1:"Beginnen Sie Ihre Reise",hero_cta2:"Die Route entdecken ↓",scroll:"Scrollen",
-    st1:"Legendäre Etappen",st2:"Gästebewertung",st3:"Kostenlose Stornierung",st4:"Lizenziert & versichert",
+    st1:"Legendäre Etappen",st2:"WhatsApp-Support",st3:"Kostenlose Stornierung",st4:"Lizenziert & versichert",
     mq_lux:"Luxus-Biwaks",mq_camel:"Kamelkarawanen",mq_star:"Sternbeobachtung",
     circuit_chapter:"— Kapitel I · Die Goldene Straße —",circuit_eyebrow:"Die Große Sahara-Route",
     circuit_h2:"Eine Straße. <span class='text-gold-grad'>Zehn Wunder.</span>",
@@ -1416,7 +1470,7 @@ tailwind.config = {
     stop4_tag:"Eine Palmenkrone zwischen Berg und Sand",
     stop4_desc:"Unser Zuhause. Eine Krone aus Palmen zwischen Berg und Sand, wo Kasbahs kühle Gärten behüten. Hier ruhen die Motoren, die Kamele erheben sich, und Ihr Nomadenleben beginnt.",
     stop5_tag:"Das heilige Dorf der Karawanensegnungen",
-    stop5_desc:"Ein heiliges Dorf am Rand der Wüste, wo Marabout-Mauern von Jahrhunderten voller Segnungen flüstern. Nomadenfamilien empfangen Sie mit Brot, Tee und der Etikette des Sandes.",
+    stop5_desc:"Ein heiliges Dorf am Rand der Wüste, wo die Mauern des Marabouts seit Jahrhunderten Karawanensegen flüstern. Nomadenfamilien empfangen Sie mit Brot, Tee und der Etikette des Sandes.",
     stop6_tag:"Fahren auf einem fossilen Spiegel",
     stop6_desc:"Surreales Fahren auf einem fossilen Spiegel: Der große ausgetrocknete See erstreckt sich bis ans Ende der Welt. Sie würden schwören, die Wolken schweben unter Ihren Rädern.",
     stop7_tag:"Das unberührte, stille Nomadenparadies",
@@ -1475,22 +1529,22 @@ tailwind.config = {
     f1_t:"Von Marrakesch",f1_d:"≈ 480 km · ± 7 Std. Panoramastraße über Ouarzazate & Tazenakht — oder unser privater klimatisierter 4x4 holt Sie an Ihrem Riad ab.",
     f2_t:"Von Agadir",f2_d:"≈ 320 km · ± 5 Std. über Taroudant und die Anti-Atlas-Pässe — Oliventäler, Arganhaine und bernsteinfarbene Canyons.",
     f3_t:"Nächste Flughäfen",f3_d:"Marrakesch Menara (RAK) · Agadir Al Massira (AGA) · Ouarzazate (OZZ) — private Transfers auf Anfrage.",
-    f4_t:"Koordinaten & Adresse",f4_d:"29,9536° N, 7,0569° W — Foum Zguid, Provinz Tata, Marokko. Schreiben Sie uns auf WhatsApp und wir lotsen Sie Düne für Düne herein.",
+    f4_t:"Koordinaten & Adresse",f4_d:"30,0853° N, 6,8736° W — Foum Zguid, Provinz Tata, Marokko. Schreiben Sie uns auf WhatsApp und wir lotsen Sie Düne für Düne herein.",
     book_chapter:"— Kapitel VI · Die Reise besiegeln —",book_eyebrow:"Erweiterte Buchung",
     book_h2:"Reservieren Sie Ihre<br><span class='text-gold-grad'>goldene Anfrage.</span>",
     book_lede:"Senden Sie Ihre Anfrage und unser Wüstenteam antwortet binnen Stunden. Eine Anzahlung von 20 % per Karte / PayPal sichert Ihre Termine — der Rest wird bar bei Ankunft beglichen. Kostenlose Stornierung bis 48 Stunden vor Abreise.",
     book_b1:"48 Std. kostenlose Stornierung",book_b2:"20 % Anzahlung · Karte / PayPal",book_b3:"Restbetrag bar bei Ankunft",
     form_title:"Gestalten Sie Ihre Expedition",
     form_note:"Mit * markierte Felder sind Pflichtfelder. Wir beantworten jede goldene Anfrage persönlich. <span class='text-gold/90'>Ihre Angaben werden automatisch auf diesem Gerät gespeichert — nichts geht jemals verloren.</span>",
-    l_name:"Vollständiger Name *",l_email:"E-Mail *",l_phone:"WhatsApp-Nummer *",l_date:"Startdatum *",l_guests:"Anzahl der Gäste *",l_tour:"Touerauswahl *",l_req:"Besondere Wünsche",
+    l_name:"Vollständiger Name *",l_email:"E-Mail *",l_phone:"WhatsApp-Nummer *",l_date:"Startdatum *",l_guests:"Anzahl der Gäste *",l_tour:"Tourauswahl *",l_req:"Besondere Wünsche",
     p_name:"z. B. Yasmine El Idrissi",p_guests:"Gäste wählen…",p_tour:"Erlebnis wählen…",
     p_req:"Ernährungswünsche (vegetarisch / vegan / glutenfrei), Anlässe, Mobilität…",
     o1:"Kamelritt bei Sonnenuntergang — Ab 39 €",o2:"Erg-Chegaga 4x4-Expedition — Ab 95 €",
     o3:"Sternen-Biwak (2 Tage / 1 Nacht) — Ab 139 €",o4:"Große Sahara-Odyssee (6 Tage / 5 Nächte) — Ab 299 €",o5:"Individuelle Route / Noch unsicher",
     submit:"✦ Goldene Anfrage senden",form_or:"Lieber per E-Mail? Schreiben Sie an",
-    succ_title:"Anfrage erhalten",succ_thanks:"Danke,",succ_mid1:"Ihre goldene Anfrage für",
-    succ_mid2:"ist bei unserem Wüstenteam. Wir antworten binnen weniger Stunden über WhatsApp.",
-    succ_saved:"✓ Ihre Anfragedetails sind sicher auf diesem Gerät gespeichert — keine Anfrage geht verloren.",
+    succ_title:"Ein letzter Schritt",succ_thanks:"Danke,",succ_mid1:"Ihre goldene Anfrage für",
+    succ_mid2:"ist bereit. Tippen Sie unten auf WhatsApp, um sie an unser Wüstenteam zu senden — wir antworten binnen weniger Stunden.",
+    succ_saved:"✓ Ihre Angaben sind auf diesem Gerät gespeichert. Erst mit WhatsApp oder E-Mail wird etwas gesendet.",
     succ_wa:"Über WhatsApp fortfahren",succ_mail:"Per E-Mail senden",succ_reset:"Weitere Anfrage senden",
     party:"Gruppe mit",starting:"ab dem",
     faq_chapter:"— Epilog · Weisheit der Nomaden —",faq_eyebrow:"Karawanen-Weisheit",
@@ -1515,13 +1569,14 @@ tailwind.config = {
     jr1:"Prolog",jr2:"Die Straße",jr3:"Riten des Sandes",jr4:"Sternenheiligtum",jr5:"Wächter",jr6:"Leitstern",jr7:"Reise besiegeln",
     mobile_cta:"✦ Jetzt buchen — Goldene Anfrage",wa_tip:"Chatten Sie mit uns · +212 767-524630",lang_label:"Sprache ändern",
     privacy_title:"Datenschutzerklärung",privacy_sub:"— Rechtliches · Ihr Vertrauen —",
-    pv1_h:"1 · Daten, die wir erheben",pv1_d:"Wenn Sie eine Buchungsanfrage senden, erhalten wir Ihren Namen, Ihre E-Mail, WhatsApp-Nummer, Reisedaten und besondere Wünsche. Diese Daten dienen ausschließlich der Planung und Bestätigung Ihrer Expedition. Formularentwürfe werden lokal auf Ihrem Gerät gespeichert.",
+    pv1_h:"1 · Daten, die wir erheben",pv1_d:"Dieses Formular sendet nichts an einen Server. Ihr Name, Ihre E-Mail, WhatsApp-Nummer, Reisedaten und besonderen Wünsche bleiben im lokalen Speicher Ihres Browsers auf Ihrem Gerät und werden erst übertragen, wenn Sie auf WhatsApp oder E-Mail tippen. Wir nutzen sie dann ausschließlich zur Planung und Bestätigung Ihrer Expedition.",
     pv2_h:"2 · Kommunikation",pv2_d:"Der Kontakt über WhatsApp oder E-Mail geht von Ihnen aus. Wir versenden ohne Ihre ausdrückliche Zustimmung keine Newsletter oder Werbebotschaften und geben Ihre Daten niemals an Dritte weiter.",
     pv3_h:"3 · Cookies & lokaler Speicher",pv3_d:"Diese Website nutzt nur funktionalen lokalen Speicher: Ihre Sprache, Formularentwürfe und Ihre Cookie-Wahl. Keine Tracking-Cookies, keine Analyse-Skripte, keine Werbenetzwerke.",
     pv4_h:"4 · Dienste von Drittanbietern",pv4_d:"Der Bereich „Finden Sie uns“ bindet einen Google-Maps-Rahmen zur Anzeige unseres Standorts ein; es gilt die Datenschutzerklärung von Google. WhatsApp-Links öffnen den Dienst von Meta; es gilt die Richtlinie von Meta.",
     pv5_h:"5 · Ihre Rechte",pv5_d:"Sie können jederzeit Auskunft, Berichtigung oder Löschung Ihrer Daten verlangen. Schreiben Sie an foumzguidtrip@gmail.com oder kontaktieren Sie uns über WhatsApp — wir antworten innerhalb von 72 Stunden.",
     pv_close:"Schließen",
     cookie_text:"Wir nutzen nur wesentlichen lokalen Speicher, um Ihre Sprache und Entwürfe zu behalten — keine Tracker, keine Werbung.",
+    map_consent:"Die Karte wird von Google Maps geladen. Akzeptieren Sie, um sie anzuzeigen — Google kann eigene Cookies setzen.",map_load:"Karte anzeigen",
     cookie_accept:"Akzeptieren",cookie_decline:"Ablehnen",cookie_more:"Datenschutzerklärung"
   }};
 
@@ -1530,6 +1585,21 @@ tailwind.config = {
   var storedLang='';try{storedLang=localStorage.getItem('fzt_lang')||'';}catch(err){}
   var currentLang=I18N[urlLang]?urlLang:(I18N[storedLang]?storedLang:'en');
   var lastStopEl=null;
+
+  /* renderStop lives in the MAIN scope so applyLang() can call it safely
+     (previously it was defined inside deferFn and threw a ReferenceError
+     when the language was changed after scrolling past a stop). */
+  function renderStop(el){
+    if(!el)return;
+    var i=parseInt(el.getAttribute('data-stop'),10);var name=el.getAttribute('data-name');
+    var k=el.getAttribute('data-tagkey');var tag=curDict()[k]||el.getAttribute('data-tag');
+    var nn=('0'+(i+1)).slice(-2);
+    var bigStop=$('#bigStop'),bigName=$('#bigName'),bigTag=$('#bigTag'),mStop=$('#mStop'),mName=$('#mName'),mProg=$('#mProg');
+    if(bigStop){bigStop.textContent=nn;bigName.textContent=name;bigTag.textContent=tag;}
+    if(mStop){mStop.textContent=nn;mName.textContent=name;mProg.style.width=((i+1)*10)+'%';}
+    $$('#circuit .map-dot').forEach(function(dd){dd.classList.toggle('dot-active',parseInt(dd.getAttribute('data-stop'),10)===i);});
+    $$('#stops .stop').forEach(function(s){s.classList.toggle('active',parseInt(s.getAttribute('data-stop'),10)===i);});
+  }
 
   function applyLang(code){
     if(!I18N[code])code='en';
@@ -1545,6 +1615,9 @@ tailwind.config = {
     var lc=$('#langCur');if(lc)lc.textContent=code.toUpperCase();
     $$('.lang-opt').forEach(function(o){var on=o.getAttribute('data-lang')===code;o.classList.toggle('active',on);o.setAttribute('aria-selected',String(on));});
     if(lastStopEl)renderStop(lastStopEl);
+    /* FAQ: an open panel keeps its old pixel height after a language swap,
+       which can clip the longer translated text — re-measure it. */
+    $$('.faq-item.open').forEach(function(it){var p=it.querySelector('.faq-a');if(p)p.style.maxHeight=p.scrollHeight+'px';});
     try{localStorage.setItem('fzt_lang',code);}catch(err){}
   }
 
@@ -1597,8 +1670,6 @@ tailwind.config = {
   /* Apply saved/URL language immediately (before the gate opens) */
   applyLang(currentLang);
 
-  (function(){var l=document.querySelector('link[rel="icon"]');if(!l)return;var t=new Image();t.onerror=function(){l.href=LOGO_FALLBACK;};t.src='logo.png';})();
-
   function runCount(el){var to=parseFloat(el.getAttribute('data-to')),dec=parseInt(el.getAttribute('data-dec')||'0',10);
     if(LITE||!('requestAnimationFrame' in window)){el.textContent=to.toFixed(dec);return;}
     var t0=null,dur=1400;function st(ts){if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=(to*e).toFixed(dec);if(p<1)requestAnimationFrame(st);}requestAnimationFrame(st);}
@@ -1608,15 +1679,18 @@ tailwind.config = {
     if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);$$('.cnt',e.target).forEach(runCount);}});},{threshold:.12});$$('.reveal').forEach(function(el){io.observe(el);});}
     else{$$('.reveal').forEach(function(el){el.classList.add('in');});$$('.cnt').forEach(runCount);}}
 
+  /* SAFETY NET — content must never stay hidden on any device, crawler or static capture */
+  setTimeout(function(){document.body.classList.add('loaded');$$('.reveal').forEach(function(el){el.classList.add('in');});},3000);
+
   /* GATE LOADER */
   (function(){var loader=$('#loader'),bar=$('#loaderBar'),pct=$('#loaderPct');if(!loader){document.documentElement.classList.remove('is-loading');startReveals();return;}
-    var DUR=1900,t0=null,done=false;function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+    var DUR=700,t0=null,done=false;function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
     function finish(){if(done)return;done=true;bar.style.width='100%';pct.textContent='100%';
       setTimeout(function(){loader.classList.add('done');document.documentElement.classList.remove('is-loading');startReveals();
         setTimeout(function(){loader.classList.add('gone');},1150);
         setTimeout(function(){if(loader.parentNode)loader.parentNode.removeChild(loader);},1400);},180);}
     function step(ts){if(done)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/DUR,1),v=Math.round(ease(p)*100);bar.style.width=v+'%';pct.textContent=v+'%';if(p<1)requestAnimationFrame(step);else finish();}
-    requestAnimationFrame(step);setTimeout(finish,4000);})();
+    requestAnimationFrame(step);setTimeout(finish,1600);})();
 
   /* MOBILE MENU */
   var menuBtn=$('#menuBtn'),menuClose=$('#menuClose'),mobileMenu=$('#mobileMenu');
@@ -1649,10 +1723,16 @@ tailwind.config = {
       setTimeout(function(){cookieBar.classList.add('cb-show');},2600);
     }
   }catch(err){}
-  function closeCookie(v){try{localStorage.setItem('fzt_cookie',v);}catch(err){}cookieBar.classList.remove('cb-show');setTimeout(function(){cookieBar.style.display='none';},600);}
+  function closeCookie(v){try{localStorage.setItem('fzt_cookie',v);}catch(err){}cookieBar.classList.remove('cb-show');setTimeout(function(){cookieBar.style.display='none';},600);if(v==='accepted')loadMap();}
   $('#ckAccept').addEventListener('click',function(){closeCookie('accepted');});
   $('#ckDecline').addEventListener('click',function(){closeCookie('essential');});
   $('#ckMore').addEventListener('click',function(){openPrivacy();});
+
+  /* ══ GOOGLE MAPS — loaded only after consent (no third-party cookies before) ══ */
+  var gmap=$('#gmap'),mapConsent=$('#mapConsent');
+  function loadMap(){if(!gmap||gmap.getAttribute('src'))return;var s=gmap.getAttribute('data-src');if(s)gmap.setAttribute('src',s);if(mapConsent)mapConsent.style.display='none';}
+  var mapBtn=$('#mapLoad');if(mapBtn)mapBtn.addEventListener('click',function(){try{localStorage.setItem('fzt_cookie','accepted');}catch(err){}loadMap();});
+  try{if(localStorage.getItem('fzt_cookie')==='accepted')loadMap();}catch(err){}
 
   /* SCROLL: navbar / progress / parallax / rail (light, rAF-throttled) */
   var navbar=$('#navbar'),scrollProg=$('#scrollProg'),pEls=$$('[data-parallax]'),tick2=false;
@@ -1681,7 +1761,8 @@ tailwind.config = {
   function burst(){if(LITE)return;var host=success;for(var i=0;i<16;i++){var s=document.createElement('span');s.className='spark';var ang=Math.random()*6.283,dist=60+Math.random()*90;s.style.setProperty('--dx',(Math.cos(ang)*dist).toFixed(0)+'px');s.style.setProperty('--dy',(Math.sin(ang)*dist).toFixed(0)+'px');s.style.animationDelay=(Math.random()*.15)+'s';host.appendChild(s);setTimeout(function(el){return function(){if(el.parentNode)el.parentNode.removeChild(el);};}(s),1400);}}
   form.addEventListener('submit',function(e){e.preventDefault();if(!form.reportValidity())return;
     var d=curDict();
-    var data={name:$('#fName').value.trim(),email:$('#fEmail').value.trim(),phone:$('#fPhone').value.trim(),date:$('#fDate').value,guests:$('#fGuests').value,tour:$('#fTour').value,requests:$('#fReq').value.trim()||'—'};
+    var tourSel=$('#fTour'),tourLabel=(tourSel.options[tourSel.selectedIndex]||{}).text||tourSel.value;
+    var data={name:$('#fName').value.trim(),email:$('#fEmail').value.trim(),phone:$('#fPhone').value.trim(),date:$('#fDate').value,guests:$('#fGuests').value,tour:tourLabel,requests:$('#fReq').value.trim()||'—'};
     try{var arr=JSON.parse(localStorage.getItem(STORE_KEY)||'[]');arr.push(Object.assign({ts:new Date().toISOString()},data));localStorage.setItem(STORE_KEY,JSON.stringify(arr));localStorage.removeItem(DRAFT_KEY);}catch(e){}
     $('#sName').textContent=data.name||'traveller';
     $('#sTour').textContent=data.tour||'your expedition';
@@ -1737,16 +1818,6 @@ tailwind.config = {
     }
 
     /* CIRCUIT STOP OBSERVER (translation-aware) */
-    var bigStop=$('#bigStop'),bigName=$('#bigName'),bigTag=$('#bigTag'),mStop=$('#mStop'),mName=$('#mName'),mProg=$('#mProg');
-    window.__renderStop=renderStop;
-    function renderStop(el){var i=parseInt(el.getAttribute('data-stop'),10);var name=el.getAttribute('data-name');
-      var k=el.getAttribute('data-tagkey');var tag=curDict()[k]||el.getAttribute('data-tag');
-      var nn=('0'+(i+1)).slice(-2);
-      if(bigStop){bigStop.textContent=nn;bigName.textContent=name;bigTag.textContent=tag;}
-      if(mStop){mStop.textContent=nn;mName.textContent=name;mProg.style.width=((i+1)*10)+'%';}
-      $$('#circuit .map-dot').forEach(function(dd){dd.classList.toggle('dot-active',parseInt(dd.getAttribute('data-stop'),10)===i);});
-      $$('#stops .stop').forEach(function(s){s.classList.toggle('active',parseInt(s.getAttribute('data-stop'),10)===i);});}
-    window.renderStop=renderStop;
     if('IntersectionObserver' in window){
       var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){lastStopEl=e.target;renderStop(e.target);}});},{rootMargin:'-42% 0px -42% 0px',threshold:0});
       $$('#stops .stop').forEach(function(s){so.observe(s);});
@@ -1755,14 +1826,6 @@ tailwind.config = {
     /* FAQ */
     $$('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.closest('.faq-item'),panel=item.querySelector('.faq-a'),was=item.classList.contains('open');$$('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;o.querySelector('.faq-q').setAttribute('aria-expanded','false');});if(!was){item.classList.add('open');panel.style.maxHeight=panel.scrollHeight+'px';btn.setAttribute('aria-expanded','true');}});});
   });
-
-  /* patch renderStop into applyLang before observers exist */
-  function renderStopProxy(el){if(window.renderStop)window.renderStop(el);}
-  var _origApply=applyLang;
-  applyLang=function(code){_origApply(code);};
-  /* re-bind lastStop rendering after language change (uses window.renderStop if available) */
-  var _applyBase=applyLang;
-  applyLang=function(code){_applyBase(code);if(lastStopEl)renderStopProxy(lastStopEl);};
 
   $('#year').textContent=String(new Date().getFullYear());
 })();
